@@ -25,3 +25,8 @@ streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice Fruit Advice!")
 streamlit.text(fruityvice_response.json())
+
+# Create pandas df from normalized json attributes
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# Create streamlit dataframe from pandas df
+fruity_df = streamlit.dataframe(fruityvice_normalized)
