@@ -3,9 +3,9 @@ import requests
 import snowflake.connector
 import streamlit
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cnx = snowflake.connector.connect(**streamlit.secrets['snowflake'])
 my_cur = my_cnx.cursor()
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_cur.execute('SELECT * FROM FRUIT_LOAD_LIST')
 my_data_row = my_cur.fetchone()
 
 my_fruit_list = pandas.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt')
@@ -41,5 +41,5 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 fruity_df = streamlit.dataframe(fruityvice_normalized)
 
 
-streamlit.text("Hello from Snowflake:")
+streamlit.text('The fruit load list contains:')
 streamlit.text(my_data_row)
